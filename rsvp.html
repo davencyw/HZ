@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP - Hochzeit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="home.html" class="nav-logo">D & M</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="details.html">Details</a></li>
+                <li><a href="location.html">Ort</a></li>
+                <li><a href="rsvp.html" class="active">RSVP</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <main>
+        <div class="page-header">
+            <h1>RSVP</h1>
+        </div>
+
+        <section class="section">
+            <p style="text-align: center; margin-bottom: var(--spacing-lg);">
+                Bitte teilt uns bis zum <strong>15. Juni 2026</strong> mit, ob ihr an unserer Hochzeit teilnehmen konnt.
+            </p>
+            
+            <div id="message" class="message" style="display: none;"></div>
+            
+            <form class="rsvp-form" id="rsvpForm">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-Mail *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Anzahl Personen</label>
+                    <select id="guests" name="guests">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Teilnahme *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="attending" value="yes" required>
+                            Ja, ich/wir kommen
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="attending" value="no">
+                            Leider nicht
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="attending" value="maybe">
+                            Noch unsicher
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dietary">Allergien / Ernahrungswunsche</label>
+                    <input type="text" id="dietary" name="dietary" placeholder="z.B. vegetarisch, glutenfrei...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message_text">Nachricht an das Brautpaar</label>
+                    <textarea id="message_text" name="message_text" placeholder="Wir freuen uns uber eure Worte..."></textarea>
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Absenden</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-names">David & Michelle</p>
+            <p class="footer-date">15. August 2026</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/nav.js"></script>
+    <script>
+        const form = document.getElementById('rsvpForm');
+        const messageDiv = document.getElementById('message');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message message-${type}`;
+            messageDiv.style.display = 'block';
+        }
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Wird gesendet...';
+            
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                guests: parseInt(document.getElementById('guests').value),
+                attending: document.querySelector('input[name="attending"]:checked').value,
+                dietary_requirements: document.getElementById('dietary').value.trim(),
+                message: document.getElementById('message_text').value.trim()
+            };
+            
+            try {
+                // Check if email already exists
+                const { data: existing, error: selectError } = await supabaseClient
+                    .from('rsvp')
+                    .select('id')
+                    .eq('email', formData.email);
+                
+                if (selectError) throw selectError;
+                
+                let result;
+                if (existing && existing.length > 0) {
+                    // Update existing
+                    result = await supabaseClient
+                        .from('rsvp')
+                        .update(formData)
+                        .eq('email', formData.email);
+                    
+                    if (result.error) throw result.error;
+                } else {
+                    // Insert new
+                    result = await supabaseClient
+                        .from('rsvp')
+                        .insert([formData]);
+                    
+                    if (result.error) throw result.error;
+                }
+                
+                // Redirect to thank you page
+                window.location.href = `thank-you.html?attending=${formData.attending}`;
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Ein Fehler ist aufgetreten. Bitte versucht es spater erneut.', 'error');
+            }
+            
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Absenden';
+        });
+    </script>
+</body>
+</html>

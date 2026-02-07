@@ -1,8 +1,6 @@
 <?php
 session_start();
-
-// Simple admin password - change this!
-define('ADMIN_PASSWORD', 'hochzeit2026');
+require_once 'config.php';
 
 // Handle login/logout
 if (isset($_POST['password'])) {
@@ -29,8 +27,6 @@ $rsvps = [];
 $stats = ['total' => 0, 'yes' => 0, 'no' => 0, 'maybe' => 0, 'guests' => 0];
 
 if ($isLoggedIn) {
-    require_once 'config.php';
-    
     if ($pdo) {
         try {
             $stmt = $pdo->query("SELECT * FROM rsvp ORDER BY created_at DESC");

@@ -1,12 +1,22 @@
 <?php
 /**
  * Database Configuration
+ * Loads credentials from config.local.php (gitignored)
  */
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'hochzeit');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+$configFile = __DIR__ . '/config.local.php';
+
+if (!file_exists($configFile)) {
+    die('config.local.php not found. Copy config.local.example.php to config.local.php and update the values.');
+}
+
+$config = require $configFile;
+
+define('DB_HOST', $config['db_host']);
+define('DB_NAME', $config['db_name']);
+define('DB_USER', $config['db_user']);
+define('DB_PASS', $config['db_pass']);
+define('ADMIN_PASSWORD', $config['admin_password']);
 
 try {
     $pdo = new PDO(
