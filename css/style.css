@@ -259,6 +259,38 @@ img {
     right: 0;
 }
 
+/* Torn paper edges on back page - sage colored */
+.torn-edge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 25px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.torn-edge-left {
+    left: 20vw;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L0,100 L5,100 Q7,95 10,93 Q15,90 13,85 Q10,82 12,78 Q15,75 11,70 Q8,67 10,63 Q13,60 9,55 Q6,52 8,48 Q11,45 7,40 Q4,37 7,33 Q10,30 6,25 Q3,22 6,18 Q9,15 5,10 Q2,7 5,3 Q7,1 5,0 Z' fill='%238F958F'/%3E%3C/svg%3E");
+    background-size: 25px 150px;
+    background-repeat: repeat-y;
+    filter: drop-shadow(2px 0 2px rgba(0,0,0,0.15));
+}
+
+.torn-edge-right {
+    right: 20vw;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 100' preserveAspectRatio='none'%3E%3Cpath d='M25,0 L25,100 L20,100 Q18,96 15,94 Q10,91 12,86 Q15,83 13,79 Q10,76 14,71 Q17,68 15,64 Q12,61 16,56 Q19,53 17,49 Q14,46 18,41 Q21,38 18,34 Q15,31 19,26 Q22,23 19,19 Q16,16 20,11 Q23,8 20,4 Q18,2 20,0 Z' fill='%238F958F'/%3E%3C/svg%3E");
+    background-size: 25px 150px;
+    background-repeat: repeat-y;
+    filter: drop-shadow(-2px 0 2px rgba(0,0,0,0.15));
+}
+
+@media (max-width: 768px) {
+    .torn-edge {
+        display: none;
+    }
+}
+
 .hero-page-back-content {
     position: relative;
     z-index: 1;
