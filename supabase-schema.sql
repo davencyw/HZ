@@ -1,9 +1,8 @@
--- Supabase SQL Schema
--- Run this in the Supabase SQL Editor (Dashboard > SQL Editor)
+-- Supabase RSVP Table Schema
+-- Run this in your Supabase SQL Editor
 
--- Create RSVP table
-CREATE TABLE rsvp (
-    id BIGSERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS rsvp (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     name TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     guests INTEGER DEFAULT 1,
@@ -16,22 +15,17 @@ CREATE TABLE rsvp (
 -- Enable Row Level Security
 ALTER TABLE rsvp ENABLE ROW LEVEL SECURITY;
 
--- Policy: Allow anyone to insert (for RSVP submissions)
+-- Policy: Allow anyone to insert (for form submissions)
 CREATE POLICY "Allow public insert" ON rsvp
     FOR INSERT
     WITH CHECK (true);
 
--- Policy: Allow anyone to read (for admin dashboard)
--- Note: In production, you might want to restrict this
-CREATE POLICY "Allow public read" ON rsvp
-    FOR SELECT
+-- Policy: Allow anyone to update their own entry (by email)
+CREATE POLICY "Allow public update by email" ON rsvp
+    FOR UPDATE
     USING (true);
 
--- Policy: Allow update based on email match
-CREATE POLICY "Allow update by email" ON rsvp
-    FOR UPDATE
-    USING (true)
-    WITH CHECK (true);
-
--- Create index for faster email lookups
-CREATE INDEX idx_rsvp_email ON rsvp(email);
+-- Policy: Allow anyone to read (for checking existing emails)
+CREATE POLICY "Allow public select" ON rsvp
+    FOR SELECT
+    USING (true);

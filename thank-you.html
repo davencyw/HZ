@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         .thank-you-section {
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -21,8 +21,11 @@
             max-width: 600px;
         }
         .thank-you-icon {
-            font-size: 4rem;
             margin-bottom: var(--spacing-md);
+        }
+        .thank-you-icon img {
+            width: 100px;
+            height: auto;
         }
         .thank-you-content h1 {
             margin-bottom: var(--spacing-md);
@@ -38,70 +41,65 @@
     </style>
 </head>
 <body>
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="home.html" class="nav-logo">D & M</a>
-            <ul class="nav-links">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="details.html">Details</a></li>
-                <li><a href="location.html">Ort</a></li>
-                <li><a href="rsvp.html">RSVP</a></li>
-            </ul>
-            <button class="nav-toggle" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+    <section class="thank-you-section">
+        <div class="thank-you-content" id="content">
+            <!-- Content will be inserted by JavaScript -->
         </div>
-    </nav>
-    <main>
-        <section class="thank-you-section">
-            <div class="thank-you-content" id="content">
-                <!-- Content will be inserted by JavaScript -->
-            </div>
-        </section>
-    </main>
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p class="footer-names">David & Michelle</p>
-            <p class="footer-date">9. Mai 2026</p>
-        </div>
-    </footer>
-    <script src="js/nav.js"></script>
+    </section>
     <script>
         const params = new URLSearchParams(window.location.search);
         const attending = params.get('attending');
+        const guests = parseInt(params.get('guests')) || 1;
         const content = document.getElementById('content');
+        const plural = guests > 1;
         
         if (attending === 'yes') {
-            content.innerHTML = `
-                <div class="thank-you-icon">&#x2665;</div>
+            content.innerHTML = plural ? `
+                <div class="thank-you-icon"><img src="images/blum_2.png" alt="Decorative leaf"></div>
                 <h1>Vielen Dank!</h1>
                 <p>Wir freuen uns riesig, dass ihr dabei sein werdet.</p>
                 <p>Es wird ein unvergesslicher Tag mit euch!</p>
                 <a href="details.html" class="btn back-link">Zu den Details</a>
+            ` : `
+                <div class="thank-you-icon"><img src="images/blum_2.png" alt="Decorative leaf"></div>
+                <h1>Vielen Dank!</h1>
+                <p>Wir freuen uns riesig, dass du dabei sein wirst.</p>
+                <p>Es wird ein unvergesslicher Tag mit dir!</p>
+                <a href="details.html" class="btn back-link">Zu den Details</a>
             `;
         } else if (attending === 'no') {
-            content.innerHTML = `
-                <div class="thank-you-icon">&#x2661;</div>
+            content.innerHTML = plural ? `
+                <div class="thank-you-icon"><img src="images/blum_2.png" alt="Decorative leaf"></div>
                 <h1>Schade!</h1>
-                <p>Wir bedauern sehr, dass ihr nicht dabei sein konnt.</p>
+                <p>Wir bedauern sehr, dass ihr nicht dabei sein könnt.</p>
                 <p>Ihr werdet uns fehlen, aber wir denken an euch!</p>
+                <a href="home.html" class="btn back-link">Zur Startseite</a>
+            ` : `
+                <div class="thank-you-icon"><img src="images/blum_2.png" alt="Decorative leaf"></div>
+                <h1>Schade!</h1>
+                <p>Wir bedauern sehr, dass du nicht dabei sein kannst.</p>
+                <p>Du wirst uns fehlen, aber wir denken an dich!</p>
                 <a href="home.html" class="btn back-link">Zur Startseite</a>
             `;
         } else if (attending === 'maybe') {
-            content.innerHTML = `
-                <div class="thank-you-icon">&#x2661;</div>
-                <h1>Danke fur eure Ruckmeldung!</h1>
+            content.innerHTML = plural ? `
+                <div class="thank-you-icon"><img src="images/blum_2.png" alt="Decorative leaf"></div>
+                <h1>Danke für eure Rückmeldung!</h1>
                 <p>Wir verstehen, dass ihr noch unsicher seid.</p>
                 <p>Gebt uns bitte Bescheid, sobald ihr es wisst.</p>
+                <a href="home.html" class="btn back-link">Zur Startseite</a>
+            ` : `
+                <div class="thank-you-icon"><img src="images/blum_2.png" alt="Decorative leaf"></div>
+                <h1>Danke für deine Rückmeldung!</h1>
+                <p>Wir verstehen, dass du noch unsicher bist.</p>
+                <p>Gib uns bitte Bescheid, sobald du es weisst.</p>
                 <a href="home.html" class="btn back-link">Zur Startseite</a>
             `;
         } else {
             content.innerHTML = `
-                <div class="thank-you-icon">&#x2665;</div>
+                <div class="thank-you-icon"><img src="images/blum_2.png" alt="Decorative leaf"></div>
                 <h1>Danke!</h1>
-                <p>Eure Antwort wurde gespeichert.</p>
+                <p>Die Antwort wurde gespeichert.</p>
                 <a href="home.html" class="btn back-link">Zur Startseite</a>
             `;
         }

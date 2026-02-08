@@ -114,6 +114,14 @@ img {
     font-style: italic;
     color: var(--color-charcoal);
     letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-logo-img {
+    height: 28px;
+    width: auto;
 }
 
 .nav-links {
@@ -243,6 +251,11 @@ img {
     background: var(--color-cream);
 }
 
+.hero-ornament img {
+    width: 80px;
+    height: auto;
+}
+
 /* Buttons */
 .btn {
     display: inline-block;
@@ -271,6 +284,17 @@ img {
 .btn-primary:hover {
     background: var(--color-sage-dark);
     border-color: var(--color-sage-dark);
+}
+
+.hero .btn-primary {
+    background: transparent;
+    border: 2px solid var(--color-cream);
+    color: var(--color-cream);
+}
+
+.hero .btn-primary:hover {
+    background: var(--color-cream);
+    color: var(--color-sage);
 }
 
 /* Page Sections */
@@ -567,6 +591,6 @@ img {
     
     .hero::before,
     .hero::after {
-        width: 10vw;
+        width: 0;
     }
 }

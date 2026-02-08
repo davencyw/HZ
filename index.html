@@ -93,6 +93,12 @@
             background: var(--color-cream);
         }
         
+        .ornament img {
+            width: 80px;
+            height: auto;
+            mix-blend-mode: multiply;
+        }
+        
         .date {
             font-family: var(--font-serif);
             font-size: 1.5rem;
@@ -125,7 +131,7 @@
         @media (max-width: 768px) {
             body::before,
             body::after {
-                width: 10vw;
+                width: 0;
             }
         }
     </style>
@@ -136,9 +142,7 @@
         <h1>David & Michelle</h1>
         <div class="ornament">
             <span></span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
+            <img src="images/blum_2.png" alt="Decorative leaf">
             <span></span>
         </div>
         <p class="date">9. Mai 2026</p>
