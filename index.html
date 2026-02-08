@@ -9,11 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-cream: #f8f5f0;
-            --color-sage: #8b9d77;
+            --color-cream: #DBD6D0;
+            --color-sage: #8F958F;
             --color-charcoal: #2d2d2d;
-            --color-gold: #c9a962;
-            --color-gold-light: #e8d9a8;
             --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Montserrat', Arial, sans-serif;
         }
@@ -26,18 +24,40 @@
         
         body {
             font-family: var(--font-sans);
-            background: linear-gradient(135deg, var(--color-cream) 0%, #e8e3db 50%, var(--color-gold-light) 100%);
+            background: var(--color-sage);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--color-charcoal);
+            position: relative;
+        }
+        
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 20vw;
+            background: var(--color-cream);
+            z-index: 0;
+        }
+        
+        body::before {
+            left: 0;
+        }
+        
+        body::after {
+            right: 0;
         }
         
         .container {
             padding: 2rem;
             max-width: 600px;
+            position: relative;
+            z-index: 1;
         }
         
         .subtitle {
@@ -45,7 +65,7 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.3em;
-            color: var(--color-sage);
+            color: var(--color-cream);
             margin-bottom: 1rem;
         }
         
@@ -55,6 +75,7 @@
             font-weight: 300;
             line-height: 1.2;
             margin-bottom: 1rem;
+            color: #ffffff;
         }
         
         .ornament {
@@ -63,26 +84,26 @@
             justify-content: center;
             gap: 1rem;
             margin: 2rem 0;
-            color: var(--color-gold);
+            color: var(--color-cream);
         }
         
         .ornament span {
             width: 60px;
             height: 1px;
-            background: var(--color-gold);
+            background: var(--color-cream);
         }
         
         .date {
             font-family: var(--font-serif);
             font-size: 1.5rem;
             font-style: italic;
-            color: #6d6d6d;
+            color: var(--color-cream);
             margin-bottom: 2rem;
         }
         
         .message {
             font-size: 1.1rem;
-            color: #6d6d6d;
+            color: var(--color-cream);
             line-height: 1.8;
         }
         
@@ -94,16 +115,24 @@
             font-size: 0.7rem;
             color: transparent;
             user-select: none;
+            z-index: 2;
         }
         
         .dev-link:hover {
-            color: #ccc;
+            color: rgba(255,255,255,0.4);
+        }
+        
+        @media (max-width: 768px) {
+            body::before,
+            body::after {
+                width: 10vw;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <p class="subtitle">Wir heiraten</p>
+        <p class="subtitle">Unser Fest</p>
         <h1>David & Michelle</h1>
         <div class="ornament">
             <span></span>
@@ -112,7 +141,7 @@
             </svg>
             <span></span>
         </div>
-        <p class="date">15. August 2026</p>
+        <p class="date">9. Mai 2026</p>
         <p class="message">Weitere Details folgen bald...</p>
     </div>
     
