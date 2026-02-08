@@ -308,6 +308,115 @@ img {
     color: var(--color-white);
 }
 
+/* Page with sage background and cream borders */
+.page-sage {
+    background: var(--color-sage);
+    position: relative;
+    min-height: calc(100vh - 200px);
+}
+
+.page-sage::before,
+.page-sage::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 20vw;
+    background: var(--color-cream);
+    z-index: 0;
+}
+
+.page-sage::before {
+    left: 0;
+}
+
+.page-sage::after {
+    right: 0;
+}
+
+.page-sage .section {
+    position: relative;
+    z-index: 1;
+}
+
+.page-sage .section,
+.page-sage .section h2,
+.page-sage .section h3,
+.page-sage .section p,
+.page-sage .section label {
+    color: var(--color-cream);
+}
+
+.page-sage .section strong {
+    color: var(--color-white);
+}
+
+.page-sage .timeline-content {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-cream);
+}
+
+.page-sage .timeline::before {
+    background: var(--color-cream);
+}
+
+.page-sage .timeline-dot {
+    background: var(--color-cream);
+    border-color: var(--color-sage);
+}
+
+.page-sage .timeline-time span {
+    color: var(--color-white);
+}
+
+.page-sage .location-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-cream);
+}
+
+.page-sage .location-card h3 {
+    color: var(--color-white);
+}
+
+.page-sage .map-container {
+    border-color: var(--color-cream);
+}
+
+.page-sage .rsvp-form {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-cream);
+}
+
+.page-sage .form-group input,
+.page-sage .form-group select,
+.page-sage .form-group textarea {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--color-cream);
+    color: var(--color-white);
+}
+
+.page-sage .form-group input::placeholder,
+.page-sage .form-group textarea::placeholder {
+    color: rgba(219, 214, 208, 0.7);
+}
+
+.page-sage .form-group input:focus,
+.page-sage .form-group select:focus,
+.page-sage .form-group textarea:focus {
+    border-color: var(--color-white);
+}
+
+.page-sage .btn-primary {
+    background: transparent;
+    border: 2px solid var(--color-cream);
+    color: var(--color-cream);
+}
+
+.page-sage .btn-primary:hover {
+    background: var(--color-cream);
+    color: var(--color-sage);
+}
+
 .section {
     padding: var(--spacing-xl) var(--spacing-md);
     max-width: 900px;
@@ -590,7 +699,9 @@ img {
     }
     
     .hero::before,
-    .hero::after {
+    .hero::after,
+    .page-sage::before,
+    .page-sage::after {
         width: 0;
     }
 }
