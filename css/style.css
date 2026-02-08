@@ -346,6 +346,26 @@ img {
     .hero-fold {
         left: 0;
     }
+    
+    .hero-page-front {
+        clip-path: polygon(
+            50px 60px,
+            100% 0%,
+            100% 100%,
+            0% 100%,
+            0 calc(60px + 50px)
+        );
+    }
+    
+    .hero-wrapper.page-turned .hero-page-front {
+        clip-path: polygon(
+            calc(100vw + 100vh) 60px,
+            100% 0%,
+            100% 100%,
+            0% 100%,
+            0 calc(60px + 100vw + 100vh)
+        );
+    }
 }
 
 .hero::before,
