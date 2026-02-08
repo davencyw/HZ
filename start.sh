@@ -14,8 +14,6 @@ if command -v python3 &> /dev/null; then
     SERVER_CMD="python3 -m http.server $PORT"
 elif command -v python &> /dev/null; then
     SERVER_CMD="python -m http.server $PORT"
-elif command -v php &> /dev/null; then
-    SERVER_CMD="php -S localhost:$PORT"
 else
     echo "[ERROR] No suitable server found."
     echo "Install Python or PHP to run a local server."

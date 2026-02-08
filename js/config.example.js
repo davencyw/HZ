@@ -1,6 +1,5 @@
 // Supabase Configuration
 // Copy this file to config.js and fill in your values
-// DO NOT commit config.js to version control!
 
 // Get these from: Supabase Dashboard > Settings > API
 const SUPABASE_URL = 'https://your-project-id.supabase.co';
