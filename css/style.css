@@ -1,3 +1,20 @@
+/* Custom Font */
+@font-face {
+    font-family: 'Modernline';
+    src: url('../fonts/modernline-personal-use/modernline.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Modernline';
+    src: url('../fonts/modernline-personal-use/modernline bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* CSS Variables */
 :root {
     --color-cream: #DBD6D0;
@@ -12,6 +29,7 @@
     
     --font-serif: 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'Montserrat', Arial, sans-serif;
+    --font-script: 'Modernline', cursive;
     
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
@@ -305,6 +323,7 @@ img {
 }
 
 .page-header h1 {
+    font-family: var(--font-script);
     color: var(--color-white);
 }
 
@@ -427,6 +446,17 @@ img {
     text-align: center;
 }
 
+.section-divider {
+    width: 80px;
+    height: 1px;
+    background: var(--color-cream);
+    margin: 0 auto;
+}
+
+.page-sage .section-divider {
+    background: var(--color-cream);
+}
+
 /* Details Page */
 .timeline {
     position: relative;
@@ -476,6 +506,16 @@ img {
     background: var(--color-white);
     border: 1px solid var(--color-gold-light);
     position: relative;
+}
+
+/* Right side content boxes (even items) - add left margin */
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: var(--spacing-sm);
+}
+
+/* Left side content boxes (odd items) - add right margin */
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: var(--spacing-sm);
 }
 
 .timeline-dot {
