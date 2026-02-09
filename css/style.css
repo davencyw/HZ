@@ -413,6 +413,31 @@ img {
 }
 
 @media (max-width: 768px) {
+    .hero-wrapper {
+        overflow: hidden;
+    }
+    
+    .hero-page-back {
+        height: 100vh;
+        min-height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+    }
+    
+    .hero-page-back-content {
+        padding-top: 80px;
+    }
+    
+    .hero-page-back-content img {
+        width: 180px;
+        margin-top: var(--spacing-md);
+    }
+    
+    .hero-back-text {
+        margin-top: var(--spacing-md);
+        font-size: 0.9rem;
+    }
+    
     .hero-page-back::before,
     .hero-page-back::after {
         width: 0;
