@@ -77,13 +77,13 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="dietary">Allergien / Ernahrungswunsche</label>
+                    <label for="dietary">Allergien / Ernährungswünsche</label>
                     <input type="text" id="dietary" name="dietary" placeholder="z.B. vegetarisch, glutenfrei...">
                 </div>
                 
                 <div class="form-group">
                     <label for="message_text">Nachricht an das Brautpaar</label>
-                    <textarea id="message_text" name="message_text" placeholder="Wir freuen uns uber eure Worte..."></textarea>
+                    <textarea id="message_text" name="message_text" placeholder="Wir freuen uns über eure Worte..."></textarea>
                 </div>
                 
                 <div class="form-submit">
@@ -130,7 +130,7 @@
                 window.location.href = `thank-you.html?attending=${formData.attending}&guests=${formData.guests}`;
             } catch (error) {
                 console.error('Error:', error);
-                showMessage('Ein Fehler ist aufgetreten. Bitte versucht es spater erneut.', 'error');
+                showMessage('Ein Fehler ist aufgetreten. Bitte versucht es später erneut.', 'error');
             }
             
             submitBtn.disabled = false;
