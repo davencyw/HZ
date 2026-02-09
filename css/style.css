@@ -974,6 +974,19 @@ img {
         padding: var(--spacing-md);
     }
     
+    .page-header {
+        padding-bottom: var(--spacing-xs);
+    }
+    
+    .page-header + .section,
+    .page-header + .section-divider + .section {
+        padding-top: var(--spacing-md);
+    }
+    
+    .page-header + .section:has(.location-info) {
+        padding-top: var(--spacing-lg);
+    }
+    
     .hero::before,
     .hero::after,
     .page-sage::before,
