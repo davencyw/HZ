@@ -216,15 +216,33 @@ img {
 .hero-page-front {
     position: relative;
     z-index: 2;
-    /* 5-point polygon aligned with fold position (top: 60px, left: 20vw, size: 50px) */
+    /* 6-point polygon aligned with fold position (top: 60px, left: 20vw, size: 50px) */
+    /* Goes down vertically then horizontally to avoid diagonal edge rendering issues */
+    -webkit-clip-path: polygon(
+        calc(20vw + 50px) 60px,
+        100% 0%,
+        100% 100%,
+        0% 100%,
+        20vw 100%,
+        20vw calc(60px + 50px)
+    );
     clip-path: polygon(
         calc(20vw + 50px) 60px,
         100% 0%,
         100% 100%,
         0% 100%,
+        20vw 100%,
         20vw calc(60px + 50px)
     );
-    transition: clip-path 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: clip-path 1.6s cubic-bezier(0.4, 0, 0.2, 1), -webkit-clip-path 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Fix clip-path anti-aliasing artifacts on Safari/Chrome Linux */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: clip-path;
+    /* Force GPU compositing to improve edge rendering */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    filter: drop-shadow(0 0 0 transparent);
 }
 
 .hero-page-back {
@@ -347,11 +365,20 @@ img {
 
 /* Page turned state - full diagonal peel continuing from corner fold */
 .hero-wrapper.page-turned .hero-page-front {
+    -webkit-clip-path: polygon(
+        calc(80vw + 100vh) 60px,
+        100% 0%,
+        100% 100%,
+        0% 100%,
+        20vw 100%,
+        20vw calc(60px + 100vw + 100vh)
+    );
     clip-path: polygon(
         calc(80vw + 100vh) 60px,
         100% 0%,
         100% 100%,
         0% 100%,
+        20vw 100%,
         20vw calc(60px + 100vw + 100vh)
     );
 }
@@ -448,6 +475,13 @@ img {
     }
     
     .hero-page-front {
+        -webkit-clip-path: polygon(
+            50px 60px,
+            100% 0%,
+            100% 100%,
+            0% 100%,
+            0 calc(60px + 50px)
+        );
         clip-path: polygon(
             50px 60px,
             100% 0%,
@@ -458,6 +492,13 @@ img {
     }
     
     .hero-wrapper.page-turned .hero-page-front {
+        -webkit-clip-path: polygon(
+            calc(100vw + 100vh) 60px,
+            100% 0%,
+            100% 100%,
+            0% 100%,
+            0 calc(60px + 100vw + 100vh)
+        );
         clip-path: polygon(
             calc(100vw + 100vh) 60px,
             100% 0%,
