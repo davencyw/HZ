@@ -1,6 +1,3 @@
-# Config with secrets
-js/config.js
-
 # PHP files (old LAMP setup - can be deleted)
 *.php
 database.sql
