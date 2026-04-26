@@ -20,7 +20,9 @@
                 <li><a href="home.html" class="active">Home</a></li>
                 <li><a href="details.html">Details</a></li>
                 <li><a href="location.html">Ort</a></li>
+                <!-- RSVP closed
                 <li><a href="rsvp.html">RSVP</a></li>
+                -->
             </ul>
             <button class="nav-toggle" aria-label="Menu">
                 <span></span>
@@ -57,22 +59,22 @@
                             <span></span>
                         </div>
                         <p class="hero-date">Samstag, 9. Mai 2026</p>
+                        <div class="hero-anticipation">
+                            <!-- <h2 class="hero-invite-heading">Feiert mit uns</h2> -->
+                            <p class="hero-anticipation-text">Wir können es kaum erwarten, mit euch zu feiern.</p>
+                            <p class="hero-countdown" id="heroCountdown" aria-live="polite"></p>
+                            <div class="hero-cta">
+                                <a href="details.html" class="btn btn-primary">Zu den Details</a>
+                                <a href="location.html" class="btn btn-primary">Ort & Anreise</a>
+                            </div>
+                        </div>
+                        <!-- RSVP closed
                         <a href="rsvp.html" class="btn btn-primary">Zusagen</a>
+                        -->
                     </div>
                 </section>
             </div>
         </div>
-
-        <section class="section section-centered">
-            <h2>Feiert mit uns</h2>
-            <p>
-                Wir freuen uns sehr, euch zu unserer Feier einzuladen. 
-                Es wäre uns eine grosse Ehre, diesen besonderen Tag mit euch zu teilen.
-            </p>
-            <p>
-                Bitte teilt uns bis zum <strong>1. April 2026</strong> mit, ob ihr dabei sein könnt.
-            </p>
-        </section>
     </main>
     <!-- <footer class="site-footer">
         <div class="footer-content">
@@ -98,6 +100,35 @@
                 heroWrapper.classList.remove('page-turned');
             });
         }
+
+        (function () {
+            var el = document.getElementById('heroCountdown');
+            if (!el) return;
+
+            function startOfLocalDay(d) {
+                return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+            }
+
+            function updateCountdown() {
+                var wedding = new Date(2026, 4, 9);
+                var today = startOfLocalDay(new Date());
+                var msPerDay = 86400000;
+                var sleeps = Math.round((wedding - today) / msPerDay);
+                var text;
+                if (sleeps > 1) {
+                    text = 'Nur noch ' + sleeps + ' mal schlafen bis zum Fest!';
+                } else if (sleeps === 1) {
+                    text = 'Nur noch einmal schlafen bis zum Fest!';
+                } else if (sleeps === 0) {
+                    text = 'Heute feiern wir!';
+                } else {
+                    text = 'Danke für diesen unvergesslichen Tag mit euch.';
+                }
+                el.textContent = text;
+            }
+
+            updateCountdown();
+        })();
     </script>
 </body>
 </html>

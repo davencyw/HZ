@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSVP - Hochzeit</title>
+    <title>RSVP geschlossen - Hochzeit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -20,7 +20,9 @@
                 <li><a href="home.html">Home</a></li>
                 <li><a href="details.html">Details</a></li>
                 <li><a href="location.html">Ort</a></li>
+                <!-- RSVP closed
                 <li><a href="rsvp.html" class="active">RSVP</a></li>
+                -->
             </ul>
             <button class="nav-toggle" aria-label="Menu">
                 <span></span>
@@ -34,6 +36,13 @@
             <h1>RSVP</h1>
         </div>
 
+        <section class="section">
+            <p style="text-align: center; margin-bottom: var(--spacing-lg);">
+                Die RSVP-Frist ist abgelaufen. Wir freuen uns auf euch am <strong>9. Mai 2026</strong>.
+            </p>
+        </section>
+
+        <!-- RSVP closed – form and submission disabled
         <section class="section">
             <p style="text-align: center; margin-bottom: var(--spacing-lg);">
                 Bitte teilt uns bis zum <strong>1. April 2026</strong> mit, ob ihr an unserer Hochzeit teilnehmen könnt.
@@ -91,10 +100,14 @@
                 </div>
             </form>
         </section>
+        -->
     </main>
+    <!-- RSVP closed
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="js/config.js"></script>
+    -->
     <script src="js/nav.js"></script>
+    <!-- RSVP closed
     <script>
         const form = document.getElementById('rsvpForm');
         const messageDiv = document.getElementById('message');
@@ -137,5 +150,6 @@
             submitBtn.textContent = 'Absenden';
         });
     </script>
+    -->
 </body>
 </html>
